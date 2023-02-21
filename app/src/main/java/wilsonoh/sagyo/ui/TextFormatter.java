@@ -13,6 +13,15 @@ public class TextFormatter {
     private final ColorCodes errorColor;
     private final ColorCodes normalColor;
 
+    /**
+     * Constructs a TextFormatter object with the specified
+     * `indentation`, `maxWidth`, `errorColor` and `normalColor`
+     *
+     * @param indentation amount of padding between the text and the enclosing box
+     * @param maxWidth the max number of characters per line before it gets truncated
+     * @param errorColor the color used for `printLinesError`
+     * @param normalColor the color used for `printLinesInfo`
+     */
     public TextFormatter(int indentation, int maxWidth, ColorCodes errorColor, ColorCodes normalColor) {
         this.numIndent = indentation;
         this.maxWidth = maxWidth;
@@ -20,10 +29,23 @@ public class TextFormatter {
         this.normalColor = normalColor;
     }
 
+    /**
+     * Constructs a TextFormatter object with the `errorColor` and `normalColor`
+     * set to red and blue respectively
+     *
+     * @param indentation amount of padding between the text and the enclosing box
+     * @param maxWidth the max number of characters per line before it gets truncated
+     */
     public TextFormatter(int indentation, int maxWidth) {
         this(indentation, maxWidth, ColorCodes.RED, ColorCodes.BLUE);
     }
 
+    /**
+     * Constructs a TextFormatter object with the `errorColor` and `normalColor`
+     * set to red and blue, and the `maxWidth` set to `TextFormatter.DEFAULT_MAX_WIDTH`
+     *
+     * @param indentation amount of padding between the text and the enclosing box
+     */
     public TextFormatter(int indentation) {
         this(indentation, DEFAULT_MAX_WIDTH);
     }
@@ -63,10 +85,16 @@ public class TextFormatter {
         System.out.println(ColorCodes.RESET.getAnsiCode());
     }
 
+    /**
+     * Helper method for printing messages in `normalColor`
+     */
     public void printLinesInfo(String... lines) {
         printLines(this.normalColor, lines);
     }
 
+    /**
+     * Helper method for printing messages in `errorColor`
+     */
     public void printLinesError(String... lines) {
         printLines(this.errorColor, lines);
     }

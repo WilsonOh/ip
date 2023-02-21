@@ -1,5 +1,10 @@
 package wilsonoh.sagyo.tasks;
 
+/**
+ * An abstract class representing a task.
+ * Contains all the methods a Task class should have
+ *
+ */
 public abstract class Task {
 
     private final String name;
@@ -10,10 +15,16 @@ public abstract class Task {
         this.done = false;
     }
 
+    /**
+     * Marks the task object as being done
+     */
     public void markDone() {
         this.done = true;
     }
 
+    /**
+     * Marks the task object as not being done
+     */
     public void unMarkDone() {
         this.done = false;
     }

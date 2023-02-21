@@ -21,11 +21,16 @@ public class CommandParser {
 
     private final TaskList tasks;
 
+    /**
+     * Constructs a CommandParser object
+     *
+     * @param tasks the TaskList to be used for the commands
+     */
     public CommandParser(TaskList tasks) {
         this.tasks = tasks;
     }
 
-    int getValidatedIndex(String commandName, String idxGroup) throws InvalidCommandException {
+    private int getValidatedIndex(String commandName, String idxGroup) throws InvalidCommandException {
         if (idxGroup == null) {
             throw new InvalidCommandException(
                 String.format("The %s command must be followed by the index of a task", commandName));
@@ -38,6 +43,13 @@ public class CommandParser {
         return index;
     }
 
+    /**
+     * Parses and returns a `Command` object from the given input string
+     *
+     * @param input the input string to be parsed
+     * @throws InvalidCommandException the input string does not match any valid command
+     * @throws InvalidTaskException the input string does not match any valid task
+     */
     public Command parseCommand(String input) throws InvalidCommandException, InvalidTaskException {
         CommandType[] commands = CommandType.values();
         for (CommandType command : commands) {
@@ -70,6 +82,7 @@ public class CommandParser {
                 case DEADLINE:
                 case EVENT:
                 case TODO:
+                    // Fallthrough for all 3 task types
                     Task toAdd = TaskParser.generateTaskFromMatcher(matcher, command);
                     return new AddTaskCommand(tasks, toAdd);
                 default:

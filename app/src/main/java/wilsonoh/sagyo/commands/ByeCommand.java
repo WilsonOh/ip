@@ -1,5 +1,9 @@
 package wilsonoh.sagyo.commands;
 
+/**
+ * A command which exits the program
+ *
+ */
 public class ByeCommand extends Command {
 
     public ByeCommand() {

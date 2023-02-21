@@ -9,8 +9,21 @@ import wilsonoh.sagyo.tasks.EventTask;
 import wilsonoh.sagyo.tasks.Task;
 import wilsonoh.sagyo.tasks.TodoTask;
 
+/**
+ * A helper class which constructs the appropriate Task class
+ * based on the task type and regex matcher given
+ *
+ */
 public class TaskParser {
 
+    /**
+     * Returns the appropriate Task object based on the given `Matcher` and task type
+     *
+     * @param matcher the `Matcher` object which contains information about the task
+     * @param taskType the type of the task to construct
+     * @return the task of type `taskType`
+     * @throws InvalidTaskException throws if an the matcher does not have the required groups
+     */
     public static Task generateTaskFromMatcher(Matcher matcher, CommandType taskType) throws InvalidTaskException {
         Task task;
         String taskName = matcher.group("name");

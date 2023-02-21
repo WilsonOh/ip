@@ -20,6 +20,11 @@ public enum ColorCodes {
         this.ansiCode = ansiCode;
     }
 
+    /**
+     * Returns the ANSI code associated with the color
+     *
+     * @return the ANSI code
+     */
     public String getAnsiCode() {
         return this.ansiCode;
     }

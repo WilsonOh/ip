@@ -2,10 +2,20 @@ package wilsonoh.sagyo.tasks;
 
 import wilsonoh.sagyo.commands.CommandType;
 
+/**
+ * Represents a task that has to be done by a certain deadline
+ *
+ */
 public class DeadlineTask extends Task {
 
     private String by;
 
+    /**
+     * Constructs a DeadlineTask object
+     *
+     * @param taskName the description of the task
+     * @param by the deadline by which the task has to be done
+     */
     public DeadlineTask(String taskName, String by) {
         super(taskName);
         this.by = by;

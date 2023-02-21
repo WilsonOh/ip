@@ -18,11 +18,23 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
 
+/**
+ * The class which handles the storing and retrieving of
+ * tasks stored in the user's filesystem
+ *
+ */
 public class Storage {
 
     private Path taskListPath;
     private final Gson gson;
 
+    /**
+     * Constructs a Storage object and creates a tasks.json file
+     * if it does not exist
+     *
+     * The location of the file is at `$XDG_CONFIG_HOME/sagyo/tasks.json` for unix
+     * systems and `$LOCALAPPDATA/sagyo/tasks.json` for windows
+     */
     public Storage() {
         this.gson = new GsonBuilder().setPrettyPrinting().create();
         Path xdgConfigHome;
@@ -51,6 +63,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Serializes a `TaskList` object into a JSON file
+     *
+     * @param tasks the task list to be serialized
+     */
     public void writeTasksToJSON(TaskList tasks) {
         JsonArray jsonArray = new JsonArray();
         for (Task task : tasks) {
@@ -65,6 +82,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Deserializes the `tasks.json` file into a `TaskList` object
+     *
+     * @return the deserialized TaskList object
+     * @throws InvalidTaskException throws if there is an unexpected task type in the json file
+     */
     public ArrayList<Task> getTaskListFromJSON() throws InvalidTaskException {
         ArrayList<Task> ret = new ArrayList<>();
         try {
